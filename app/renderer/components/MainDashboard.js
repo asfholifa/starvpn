@@ -385,6 +385,33 @@ export default class MainDashboard extends PureComponent {
 
     return (
       <div className="main-dashboard-page">
+        <div id="openModal" class="modal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title">Warning</h3>
+                <a href="#close" title="Close" class="close">×</a>
+              </div>
+              <div class="modal-body">    
+                <p>Smart VPN service is recommended for Datacenter IP Type only</p>
+              </div>
+              <div class="modal-body">
+                <a
+                className="styled-btn modalConnectButton"
+                href="#close"
+                onClick={
+                  isCurrentSlotConnected()
+                    ? this.startHandleDisconnect
+                    : this.connectToVpn
+                }
+                disabled={isDisabled}
+                title={remainingIpUpdatesText}>
+                Ok
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="logo" />
         <div className="slots-container">
           <div className="configure-block">
@@ -410,20 +437,14 @@ export default class MainDashboard extends PureComponent {
                   }))}
                   onChange={this.changeSlot}
                 />
-                <button
-                  className={classNames(
+                <a className={classNames(
                     'connection-btn',
                     isCurrentSlotConnected() && 'connect-btn',
-                  )}
-                  onClick={
-                    isCurrentSlotConnected()
-                      ? this.startHandleDisconnect
-                      : this.connectToVpn
-                  }
+                  )} 
                   disabled={isDisabled}
-                  title={remainingIpUpdatesText}>
-                  <div className="connect-img" />
-                </button>
+                  title={remainingIpUpdatesText} 
+                  href="#openModal"><div className="connect-img" />
+                </a>
               </div>
             </div>
             {isDisabled || (
