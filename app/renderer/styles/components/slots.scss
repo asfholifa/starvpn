@@ -1,0 +1,122 @@
+/*** slots MAIN STYLE ***/
+.slots-top {
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+}
+.slots-raw-wrap {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.slots-raw {
+  display: flex;
+  flex: 1;
+}
+
+.slots-loading {
+  width: 100%;
+  text-align: center;
+  margin: 20px;
+}
+
+.slots-btn {
+  padding: 5px 10px;
+  margin: 5px 0;
+  background-color: #93BE2F;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-color: #ccc;
+  border-radius: 2px;
+  font-size: 16px;
+  line-height: 1.2;
+  transition: all 0.2s ease;
+  font-weight: 400;
+  white-space: nowrap;
+  &:disabled {
+    background-color: gray;
+  }
+}
+
+.slots-raw-around {
+  flex: 1;
+  display: flex;
+  justify-content: space-around;
+  font-family: "Open Sans", sans-serif;
+}
+
+.slots-select-configs {
+  flex: 1;
+  margin: 10px 15px;
+}
+
+.slots-title-container {
+  padding-bottom: 10px;
+}
+
+.slots-current-label {
+  font-size: 1rem;
+  font-family: $primaryFont;
+  font-weight: 600;
+}
+
+.slots-container {
+  display: flex;
+}
+
+.slots-ip-type-select {
+  margin-bottom: 10px;
+}
+
+.slots-left-column {
+  flex: 3;
+  padding: 25px 15px;
+  width: 100%;
+}
+
+.slots-bold {
+  font-weight: 600;
+  font-family: "Gotham SSm A", "Gotham SSm B";
+  font-size: 1.2rem;
+}
+
+.slots-remaining {
+  font-size: 14px;
+}
+
+.slots-right-column {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #0000000f;
+  padding: 10px 20px;
+}
+
+.slots-select-label {
+  margin: 10px 15px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.slots-select-header {
+  background-color: #dedede;
+}
+
+.slots-bordered {
+  border: thin ridge lightgray;
+}
+
+.slots-header {
+  background-color: #93be2fbf;
+  padding: 10px 15px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+}

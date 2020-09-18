@@ -1,0 +1,66 @@
+appId: com.dnsflex.app
+copyright: Dnsflex co
+productName: StarVPN
+
+publish:
+  provider: github
+
+asar: true
+
+directories:
+  buildResources: dist-assets/
+  output: dist/
+
+extraResources:
+  - vpn/
+  - service/
+  - start.vbs
+  - openvpn/${arch}
+  - '!**/*.map'
+  - '!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}'
+  - '!**/node_modules/*.d.ts'
+  - '!**/{__pycache__,thumbs.db,.flowconfig,.idea,.vs,.nyc_output}'
+
+files:
+  - package.json
+  - init.js
+  - installer.nsh
+  - build/
+  - node_modules/
+  - '!**/*.ilk'
+  - '!**/*.map'
+
+dmg:
+  contents:
+    - type: link
+      path: /Applications
+      x: 410
+      y: 150
+    - type: file
+      x: 130
+      y: 150
+
+mac:
+  target: dmg
+  category: public.app-category.tools
+
+win:
+  target:
+     - target: nsis
+       arch:
+         - ia32
+         - x64
+  requestedExecutionLevel: requireAdministrator
+  icon: build/renderer/styles/icons/icon.png
+  artifactName: '${productName} Setup ${version}-${env.BUILD_ARCH}.${ext}'
+  publisherName: Starhome
+  verifyUpdateCodeSignature: false
+
+linux:
+  target:
+    - deb
+    - AppImage
+
+nsis:
+  include: installer.nsh
+  deleteAppDataOnUninstall: true

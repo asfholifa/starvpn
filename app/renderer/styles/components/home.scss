@@ -1,0 +1,76 @@
+/*** HOME ***/
+.home-page {
+    width: 50%;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.home-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.9rem;
+    font-family: $primaryFont;
+    border: 0;
+    border-bottom: 1px solid $fontColorFooter;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.home-title {
+    margin-top: 2rem;
+    font-family: $primaryFont;
+}
+
+.home-message {
+    height: 2rem;
+    font-size: 0.9rem;
+    font-family: $primaryFont;
+    color: red;
+    margin: 0;
+}
+
+.home-login-button, .home-signup-button {
+    width: 100%;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: $primaryWhite;
+}
+
+.home-login-button {
+    background-color: $primaryGreen;
+}
+
+.home-signup-button {
+    background-color: $primaryRed;
+}
+
+.home-line {
+    hr {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        border: 0;
+        border-top: 1px solid $primarySilver;
+    }
+
+    span {
+        background: $primaryWhite;
+        color: $primaryGrey;
+        padding: 0px 20px;
+        position: relative;
+        top: -2.6rem;
+        font-size: 0.9rem;
+        font-family: $primaryFont;
+    }
+}
+
+.home-table {
+    font: $primaryFont;
+    font-size: 0.9rem;
+}
+
+.home-table thead {
+    font-size: 1.0rem;
+    font-weight: bold;
+}

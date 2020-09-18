@@ -1,0 +1,61 @@
+.settings-page {
+
+  & h2, h3, h4, h5, span {
+    font-family: $primaryFont;
+  }
+
+  & > h2 {
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .title-block {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .settings-list {
+    margin-top: 42px;
+  }
+
+  .settings-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 37px;
+
+    .settings-title {
+      margin: 0;
+    }
+  }
+
+  .settings-description {
+    font-size: 13px;
+    font-weight: 300;
+    color: $descriptionColor;
+  }
+
+  .download-item {
+    margin-bottom: 37px;
+  }
+
+  .download-title {
+    display: flex;
+    cursor: pointer;
+
+    & > span {
+      font-size: 14px;
+      font-weight: 600;
+      color: $primaryGreen;
+    }
+
+    .download-img {
+      background-image: url("../styles/icons/save-item.svg");
+      height: 20px;
+      width: 20px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-right: 5px;
+    }
+  }
+}

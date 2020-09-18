@@ -1,0 +1,46 @@
+.about-page {
+
+  & h2, h3, h4, h5, span, p {
+    font-family: $primaryFont;
+  }
+
+  & > h2 {
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .about-text {
+    margin-bottom: 38px;
+    margin-top: 43px;
+
+    & p {
+      font-size: 14px;
+      font-weight: normal;
+
+      &:first-child {
+        margin-bottom: 18px;
+      }
+    }
+  }
+
+  .copyright {
+    font-size: 12px;
+  }
+
+  .copyright-star {
+    color: $primaryGreen;
+    margin-left: 5px;
+  }
+
+  .links-block {
+    margin-bottom: 43px;
+
+    & > span {
+      font-size: 13px;
+      font-weight: normal;
+      color: #7a94f1;
+      margin-right: 43px;
+      cursor: pointer;
+    }
+  }
+}

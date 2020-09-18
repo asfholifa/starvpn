@@ -1,0 +1,256 @@
+.manage-slots-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+
+  & h2,
+  h3,
+  h4,
+  h5,
+  span {
+    font-family: $primaryFont;
+  }
+
+  & > h2 {
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .slots-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    .buttons-block {
+      align-items: center;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 20px;
+
+      & > .remaining-ip-updates {
+        font-size: 0.8rem;
+        justify-self: start;
+        padding-right: 1rem;
+      }
+
+      & > button {
+        max-width: 148px;
+        height: 32px;
+        font-size: 14px;
+
+        &:not(:last-child) {
+          margin-right: 15px;
+        }
+      }
+    }
+    .configure-block .top-block .slot-name {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      span {
+        padding: 0px;
+        &.edit-img {
+          background-image: url('../styles/icons/edit.svg');
+          display: inline-block;
+          height: 20px;
+          margin-left: 10px;
+          width: 20px;
+        }
+      }
+    }
+  }
+
+  .setup-title {
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  .setup-subtitle {
+    font-size: 14px;
+    margin-top: 0;
+  }
+
+  .configure-block {
+    margin-top: 15px;
+    border-radius: 10px;
+
+    &:first-of-type {
+      margin-top: 21px;
+    }
+
+    &:last-child {
+      margin-bottom: 30px;
+    }
+
+    .top-block {
+      height: 62px;
+      box-shadow: 0 40px 80px 0 rgba(0, 0, 0, 0.1);
+      background-image: $topBlockBgColor;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      border-radius: 10px 10px 0 0;
+
+      & span {
+        font-size: 16px;
+        padding: 0 25px;
+        display: flex;
+        align-items: center;
+
+        &.disabled {
+          color: $inputBorderColor;
+          cursor: auto;
+        }
+
+        & strong:first-child {
+          margin-right: 5px;
+        }
+
+        & strong:last-child,
+        input {
+          margin-left: 5px;
+        }
+
+        & input {
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+
+      .connect-title {
+        margin-right: 77px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .one-more-slot {
+    margin-top: auto;
+    height: 132px;
+    min-height: 132px;
+    border-radius: 10px;
+    box-shadow: 0px 40px 80px 0 rgba(0, 0, 0, 0.1);
+    border: solid 2px $primaryGreen;
+    background-color: #151a2c;
+    padding: 0 25px;
+    margin-bottom: 20px;
+
+    & button {
+      font-size: 16px;
+    }
+  }
+}
+
+.bottom-block {
+  height: 64px;
+  display: flex;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+
+  .configure-title {
+    font-size: 11px;
+    color: $configureTitleColor;
+  }
+
+  .left-block {
+    box-shadow: 0px 40px 80px 0 rgba(0, 0, 0, 0.1);
+    background-color: $darkBgColor;
+    height: 100%;
+    width: 30%;
+    padding: 12px 20px 0;
+    display: flex;
+    flex-direction: column;
+
+    .slots-type-select {
+      margin-top: 5px;
+      color: $primaryGreen;
+
+      &:disabled {
+        color: $inputBorderColor;
+      }
+    }
+  }
+
+  .right-block {
+    background-color: $darkBlueBgColor;
+    height: 100%;
+    width: 70%;
+    display: flex;
+    padding: 12px 20px 0;
+    justify-content: space-around;
+
+    & > div {
+      display: flex;
+      flex-direction: column;
+    }
+
+    & select {
+      margin-top: 5px;
+      width: 120px;
+    }
+  }
+}
+
+.connection-btn {
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  bottom: 0;
+  right: 20px;
+  margin: auto;
+  width: 64px;
+  height: 64px;
+  box-shadow: 0 0 50px 0 #93be2f, inset 0 2px 2px 0 rgba(161, 101, 182, 0.35);
+  border: solid 2px #b2dd4c;
+  background-image: linear-gradient(to top, #20273e, #2e395a);
+  cursor: pointer;
+
+  &:disabled {
+    border: solid 2px $inputBorderColor;
+    box-shadow: none;
+    cursor: auto;
+
+    .connect-img {
+      background-image: url('../styles/icons/connect_disable.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: absolute;
+      bottom: 0;
+      top: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  .connect-img {
+    background-image: url('../styles/icons/connect.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    width: 20px;
+    height: 20px;
+  }
+
+  &.connect-btn {
+    background-image: linear-gradient(to top, #82aa1f, #b7f227);
+
+    &:hover {
+      background-image: linear-gradient(to top, #64801f, #b7f227);
+    }
+  }
+}

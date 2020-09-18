@@ -1,0 +1,212 @@
+/*** welcome MAIN STYLE ***/
+.welcome-page {
+  margin-top: 19px;
+  margin-left: -88px;
+
+  .buttons-block {
+    display: flex;
+    justify-content: center;
+    margin-top: 31px;
+
+    & > button {
+      color: $primaryWhite;
+      font-size: 14px;
+      font-weight: 600;
+      font-family: $primaryFont;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      height: 36px;
+      width: 210px;
+      cursor: pointer;
+      border-radius: 10px;
+      box-shadow: 0px 40px 80px 0 rgba(0, 0, 0, 0.1), inset 0px 2px 2px 0 rgba(161, 101, 182, 0.35);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .fb-btn {
+      border: solid 2px #5484e3;
+      background-image: linear-gradient(to top, #4267b2, #4165af);
+      margin-right: 16px;
+
+      &:hover {
+        background-image: linear-gradient(to top, #365490, #4165af);
+      }
+
+      .fb-img {
+        background-image: url("../styles/icons/fb.svg");
+        height: 16px;
+        width: 9px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-right: 15px;
+      }
+    }
+
+    .google-btn {
+      border: solid 2px #f35c52;
+      background-image: linear-gradient(to top, #d3433a, #e3483e);
+
+      &:hover {
+        background-image: linear-gradient(to top, #a73c36, #e3483e);
+      }
+
+      .google-img {
+        background-image: url("../styles/icons/google.svg");
+        height: 16px;
+        width: 16px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-right: 15px;
+      }
+    }
+  }
+}
+
+.welcome-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100%;
+}
+
+.welcome-title {
+  flex: 1;
+  color: $primaryWhite;
+  font-family: $primaryFont;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+.welcome-subtitle {
+  font-size: 14px;
+  margin-top: 0;
+}
+
+.welcome-text{
+  font-family: $primaryFont;
+}
+
+.login-form-block {
+  border-radius: 10px;
+  height: 150px;
+  max-width: 620px;
+  box-shadow: 0px 40px 80px 0 rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(to top, #20273e, #263050);
+  margin: 0 auto;
+  margin-top: 11px;
+  padding: 33px 63px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  & > div {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+}
+
+.welcome-line {
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid $primarySilver;
+}
+
+.welcome-button-main {
+  font-size: 1rem;
+  background-color: $primaryGreen;
+  color: $primaryWhite;
+  margin-right: 0;
+}
+
+.welcome-button-logout {
+  font-size: 1rem;
+  background-color: $primaryGreen;
+  color: $primaryWhite;
+  margin-right: 0;
+}
+
+/*** welcome SETTING STYLE ***/
+.welcome-main {
+  display: flex;
+  margin-bottom: 25px;
+  font-family: $primaryFont;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-label {
+  margin-left: 23px;
+  margin-bottom: 5px;
+  display: block;
+  color: $primaryWhite;
+  font-size: 11px;
+  font-family: $primaryFont;
+}
+
+.input-block {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.form-input {
+  padding: 10px;
+  font-size: 0.9rem;
+  font-family: $primaryFont;
+  width: 240px;
+  height: 40px;
+  border-radius: 20px;
+  border: solid 2px $inputBorderColor;
+  background-color: $inputBgColor;
+  color: $primaryWhite;
+
+  &:focus {
+    outline: none;
+    background-color: $inputBgFocusColor;
+
+    & + .input-label {
+      color: $primaryGreen;
+    }
+  }
+}
+
+.login-btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: -56px;
+}
+
+.new-user-block {
+  margin: 0 auto;
+  margin-top: 50px;
+  color: $primaryWhite;
+  display: block;
+
+  & > div {
+    text-align: center;
+    font-family: $primaryFont;
+    font-size: 16px;
+    font-weight: 600;
+
+    & a {
+      color: $primaryGreen;
+      cursor: pointer;
+    }
+
+    & .forgot-password {
+      font-weight: 300;
+      margin-top: 0;
+      cursor: pointer;
+    }
+  }
+}

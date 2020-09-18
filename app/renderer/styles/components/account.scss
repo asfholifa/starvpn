@@ -1,0 +1,110 @@
+.account-page {
+
+  & h2, h3, h4, h5, span {
+    font-family: $primaryFont;
+  }
+
+  & > h2 {
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .account-subtitle {
+    margin-top: 33px;
+    margin-bottom: 7px;
+  }
+
+  .plan-title {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .plan-subtitle {
+    font-size: 12px;
+    font-weight: 300;
+    color: $configureTitleColor;
+  }
+
+  .plan-item {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 40px 80px 0 rgba(0, 0, 0, 0.1);
+    background-color: #121522;
+    overflow: hidden;
+
+    .top-block {
+      height: 72px;
+      box-shadow: 0 40px 80px 0 rgba(0, 0, 0, 0.1);
+      background-image: $topBlockBgColor;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 25px;
+
+      .title-block {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .upgrade-btn {
+        height: 32px;
+        font-size: 14px;
+      }
+    }
+
+    .bottom-block {
+      height: 132px;
+      padding: 20px 25px;
+      column-count: 2;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+
+      & > div {
+        display: flex;
+        margin-bottom: 11px;
+      }
+
+      .list-item-block {
+        display: flex;
+        align-items: center;
+      }
+
+      .list-item-text {
+        font-size: 12px;
+        font-weight: normal;
+        color: $primaryGreen;
+      }
+    }
+  }
+
+  .arrow-img {
+    background-image: url("../styles/icons/mini_arrow.svg");
+    width: 13px;
+    height: 9px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 10px;
+  }
+
+  .buttons-block {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+
+    & > button {
+      width: 148px;
+      height: 32px;
+      font-size: 14px;
+      background: transparent;
+      text-shadow: none;
+      box-shadow: none;
+
+      &:first-child {
+        margin-right: 18px;
+      }
+    }
+  }
+
+}

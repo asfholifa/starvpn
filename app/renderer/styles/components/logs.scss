@@ -1,0 +1,25 @@
+.logs-list {
+  font-family: monospace;
+  list-style-type: none;
+  font-size: 10px;
+}
+
+.logs-container {
+  height: 80vh;
+  overflow-y: scroll;
+  padding: 0;
+}
+
+.logs-page {
+  height: 100%;
+  margin: 0 auto;
+}
+
+.log-line {
+  padding-bottom: 5px;
+}
+
+.log-line-important {
+  padding-bottom: 5px;
+  font-weight: bold;
+}

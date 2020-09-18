@@ -1,0 +1,254 @@
+.main-dashboard-page {
+
+  & h2, h3, h4, h5, span {
+    font-family: $primaryFont;
+  }
+
+  & > h2 {
+    font-size: 22px;
+    margin: 0;
+  }
+
+  .slots-container {
+    display: flex;
+    flex-direction: column;
+
+    .configure-block {
+      margin-top: 15px;
+      border-radius: 10px;
+
+      &:first-of-type {
+        margin-top: 17px;
+      }
+    }
+
+    .top-block {
+      height: 62px;
+      box-shadow: 0 40px 80px 0 rgba(0, 0, 0, 0.1);
+      background-image: $topBlockBgColor;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      border-radius: 10px 10px 0 0;
+
+      & span {
+        font-size: 16px;
+        padding: 0 25px;
+      }
+
+      .ip-configure {
+        display: flex;
+        align-items: center;
+      }
+
+      .settings-img {
+        background-image: url("../styles/icons/slot-settings.svg");
+        width: 18px;
+        height: 19px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      select {
+        margin-right: 100px;
+      }
+    }
+
+    .buttons-block {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 10px;
+      & > button {
+        width: 148px;
+        height: 32px;
+        font-size: 14px;
+      }
+    }
+  }
+
+  .dashboard-middle-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+
+    & > div {
+      width: 49%;
+      height: 250px;
+      border-radius: 10px;
+      box-shadow: 0px 40px 80px 0 rgba(0, 0, 0, 0.1);
+      background-image: $topBlockBgColor;
+      padding: 10px 24px;
+    }
+
+    & span {
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+
+  .disabled {
+    color: $disabledText;
+  }
+
+  .dashboard-stats {
+
+    .traffic-block {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+
+      & > span {
+        font-size: 15px;
+      }
+
+      .circle {
+        width: 16px;
+        height: 16px;
+        border: solid 2px #2c365b;
+        border-radius: 50%;
+        margin-right: 5px;
+      }
+    }
+
+    .bytes-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      & > div {
+        display: flex;
+        align-items: center;
+
+        .bytes-text {
+          font-size: 11px;
+          color: #6472ca;
+          margin-right: 12px;
+        }
+
+        .bytes-value {
+          font-size: 10px;
+          font-weight: 600;
+          margin-right: 2px;
+        }
+
+        .point {
+          color: $primaryGreen;
+          margin-right: 2px;
+          font-size: 10px;
+          font-family: sans-serif;
+        }
+      }
+
+      .arrow-bottom {
+        background-image: url("../styles/icons/arrow-bottom.svg");
+        width: 8px;
+        height: 10px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .arrow-top {
+        background-image: url("../styles/icons/arrow-top.svg");
+        width: 8px;
+        height: 10px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+    }
+  }
+
+  .dashboard-bottom-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+
+    .container-title {
+      font-size: 14px;
+      color: $configureTitleColor;
+
+      &.disabled {
+        color: $disabledText;
+      }
+    }
+
+    & > div {
+      width: 49%;
+      height: 56px;
+      border-radius: 10px;
+      box-shadow: 0px 40px 80px 0 rgba(0, 0, 0, 0.1);
+      background-image: linear-gradient(to top, #20273e, #263050);
+      padding: 0 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .network {
+
+      & > div {
+        display: flex;
+        align-items: center;
+      }
+
+      .wifi-img {
+        background-image: url("../styles/icons/wifi.svg");
+        width: 13px;
+        height: 10px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin-right: 10px;
+      }
+
+      .network-name {
+        font-size: 13px;
+        font-weight: 600;
+
+        &.disabled {
+          color: $disabledText;
+        }
+      }
+    }
+
+    .ip {
+      font-size: 13px;
+      font-weight: 600;
+      color: $primaryGreen;
+
+      &.disabled {
+        color: $disabledText;
+      }
+    }
+  }
+
+  .map-img {
+    background-image: url("../styles/icons/map500.png");
+    width: 298px;
+    height: 198px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: auto;
+    position: relative;
+  }
+
+  .map-marker {
+    width: 16px;
+    height: 16px;
+    background-image: url("../styles/icons/marker.png");
+    position: absolute;
+    transform: translate(-50%, -100%);
+  }
+
+  .save-btn {
+    margin-right: 20px;
+    height: 32px;
+    font-size: 14px;
+    width: 132px;
+    min-width: 132px;
+  }
+}
