@@ -288,6 +288,7 @@ input {
   box-shadow: 40px 0 80px 0 rgba(0, 0, 0, 0.16);
   background-color: $menuBgColor;
   position: fixed;
+  z-index: 3;
   top: 0;
   bottom: 0;
 
