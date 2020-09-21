@@ -417,9 +417,9 @@ export default class MainDashboard extends PureComponent {
              <div className="modal-content">
                <div className="modal-header">
                  <h3 className="modal-title">Warning</h3>
-                 <a title="Close" className="close">×</a>
+                 <a onClick={showModal} title="Close" className="close">×</a>
                </div>
-               <div className="modal-body">    
+               <div className="modal-body">
                  <p>Smart VPN service is recommended for Datacenter IP Type only</p>
                </div>
                <div className="modal-body">
