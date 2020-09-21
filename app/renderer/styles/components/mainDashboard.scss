@@ -252,6 +252,7 @@
     min-width: 132px;
   }
   .modal-content {
+    font-family: $primaryFont;
     position: relative;
     display: -webkit-box;
     display: -webkit-flex;
@@ -285,11 +286,9 @@
     left: 0;
     background: rgba(0,0,0,0.5); 
     z-index: 1050;
-    opacity: 0; 
     -webkit-transition: opacity 200ms ease-in; 
     -moz-transition: opacity 200ms ease-in;
     transition: opacity 200ms ease-in; 
-    pointer-events: none; 
     margin: 0;
     padding: 0;
   }

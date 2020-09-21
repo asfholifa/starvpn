@@ -8,7 +8,7 @@ import map from 'lodash/map';
 import noop from 'lodash/noop';
 import toLower from 'lodash/toLower';
 import values from 'lodash/values';
-import PropTypes from 'prop-types';
+import PropTypes, { func } from 'prop-types';
 import React, { PureComponent } from 'react';
 import StyledButton from './statelessComponents/StyledButton';
 import { IP_TYPES_MAPPING } from '../reducers/slots';
@@ -35,6 +35,11 @@ export default class MainDashboard extends PureComponent {
   };
 
   state = {
+    modal: [{
+      status: [],
+      option: 'close'
+    }],
+    modalOption: [],
     userIpTypes: [],
     currentSlot: {},
     dnsServers: {},
@@ -383,35 +388,52 @@ export default class MainDashboard extends PureComponent {
       '/',
     );
 
+    const showModal = () => {
+      const { modal } = this.state;
+      if(modal[0].option === 'close'){
+        this.setState({ modal: [{
+          status: [1],
+          option: 'open'
+        }]});
+      } else if(modal[0].option === 'open'){
+        this.setState({modal: [{
+          status: [],
+          option: 'start'
+        }]});
+      } else if(modal[0].option === 'start'){
+        this.setState({modal: [{
+          status: [],
+          option: 'close'
+        }]});
+        !isCurrentSlotConnected ? this.startHandleDisconnect() : this.connectToVpn();
+      }
+    }
+
     return (
       <div className="main-dashboard-page">
-        <div id="openModal" class="modal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h3 class="modal-title">Warning</h3>
-                <a href="#close" title="Close" class="close">×</a>
-              </div>
-              <div class="modal-body">    
-                <p>Smart VPN service is recommended for Datacenter IP Type only</p>
-              </div>
-              <div class="modal-body">
-                <a
-                className="styled-btn modalConnectButton"
-                href="#close"
-                onClick={
-                  isCurrentSlotConnected()
-                    ? this.startHandleDisconnect
-                    : this.connectToVpn
-                }
-                disabled={isDisabled}
-                title={remainingIpUpdatesText}>
-                Ok
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        {this.state.modal[0].status.map(item => (
+           <div key={Date.now()} id="openModal" className="modal">
+           <div className="modal-dialog">
+             <div className="modal-content">
+               <div className="modal-header">
+                 <h3 className="modal-title">Warning</h3>
+                 <a title="Close" className="close">×</a>
+               </div>
+               <div className="modal-body">    
+                 <p>Smart VPN service is recommended for Datacenter IP Type only</p>
+               </div>
+               <div className="modal-body">
+                 <a
+                 className="styled-btn modalConnectButton"
+                 onClick={showModal}
+                 >
+                 Ok
+                 </a>
+               </div>
+             </div>
+           </div>
+         </div>
+        ))}
         <div className="logo" />
         <div className="slots-container">
           <div className="configure-block">
@@ -441,9 +463,10 @@ export default class MainDashboard extends PureComponent {
                     'connection-btn',
                     isCurrentSlotConnected() && 'connect-btn',
                   )} 
+                  onClick={showModal}
                   disabled={isDisabled}
                   title={remainingIpUpdatesText} 
-                  href="#openModal"><div className="connect-img" />
+                  ><div className="connect-img" />
                 </a>
               </div>
             </div>
