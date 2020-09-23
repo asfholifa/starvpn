@@ -36,6 +36,10 @@ export default class ManageSlots extends PureComponent {
   };
 
   state = {
+    modal: [{
+      status: [1],
+      option: 'close'
+    }],
     userIpTypes: [],
     dnsServers: {},
     showSlotNameInput: false,
@@ -283,6 +287,7 @@ export default class ManageSlots extends PureComponent {
   };
 
   updateIP = async (item) => {
+   // if()
     const { refreshUserData, userEmail, auth_token } = this.props;
     await this.props.updateIP({ ...item, userEmail }, auth_token);
     await refreshUserData(userEmail, false);
@@ -374,8 +379,53 @@ export default class ManageSlots extends PureComponent {
       );
     }
 
+    const modalShow = () => {
+      const { modal } = this.state;
+      if(user.package === 'Free VPN'){
+        this.setState({ modal: [{
+          status: [1],
+          option: 'open'
+        }]});
+      } else {
+        this.updateIP(item);
+      }
+    }
+
+    const closeModal = () => {
+      const { modal } = this.state;
+      if(modal[0].status.length){
+        this.setState({ modal: [{
+          status: [],
+          option: 'close'
+        }]});
+      }
+    }
+
     return (
       <div className="manage-slots-page">
+        {this.state.modal[0].status.map(item => (
+           <div key={Date.now()} id="openModal" className="modal">
+           <div className="modal-dialog">
+             <div className="modal-content">
+               <div className="modal-header">
+                 <h3 className="modal-title">Warning</h3>
+                 <a onClick={closeModal} title="Close" className="close">×</a>
+               </div>
+               <div className="modal-body">
+                 <p>This feature is for paid members only.</p>
+               </div>
+               <div className="modal-body">
+                 <a
+                 className="styled-btn modalConnectButton"
+                 onClick={closeModal}
+                 >
+                 Ok
+                 </a>
+               </div>
+             </div>
+           </div>
+         </div>
+        ))}
         <h2>Manage Slots</h2>
         <h3 className="setup-title">
           You have <strong>{user.totalslots} available</strong> {slotText}
@@ -487,7 +537,7 @@ export default class ManageSlots extends PureComponent {
                 <StyledButton
                   label="Update IP"
                   disabled={!isCurrentSlotConnected(item.port) || isPremium}
-                  onClick={() => this.updateIP(item)}
+                  onClick={modalShow}
                   title={remainingIpUpdatesText}
                 />
                 <StyledButton
