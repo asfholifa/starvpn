@@ -37,7 +37,7 @@ export default class ManageSlots extends PureComponent {
 
   state = {
     modal: [{
-      status: [1],
+      status: [],
       option: 'close'
     }],
     userIpTypes: [],
@@ -379,7 +379,7 @@ export default class ManageSlots extends PureComponent {
       );
     }
 
-    const modalShow = () => {
+    const modalShow = (item) => {
       const { modal } = this.state;
       if(user.package === 'Free VPN'){
         this.setState({ modal: [{
