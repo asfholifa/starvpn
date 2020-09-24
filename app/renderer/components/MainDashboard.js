@@ -390,22 +390,27 @@ export default class MainDashboard extends PureComponent {
 
     const showModal = () => {
       const { modal } = this.state;
-      if(modal[0].option === 'close'){
-        this.setState({ modal: [{
-          status: [1],
-          option: 'open'
-        }]});
-      } else if(modal[0].option === 'open'){
-        this.setState({modal: [{
-          status: [],
-          option: 'start'
-        }]});
-      } else if(modal[0].option === 'start'){
-        this.setState({modal: [{
-          status: [],
-          option: 'close'
-        }]});
-        !isCurrentSlotConnected ? this.startHandleDisconnect() : this.connectToVpn();
+      let check = isCurrentSlotConnected();
+      if(!check){
+        if(modal[0].option === 'close'){
+          this.setState({ modal: [{
+            status: [1],
+            option: 'open'
+          }]});
+        } else if(modal[0].option === 'open'){
+          this.setState({modal: [{
+            status: [],
+            option: 'start'
+          }]});
+        } else if(modal[0].option === 'start'){
+          this.setState({modal: [{
+            status: [],
+            option: 'close'
+          }]});
+          isCurrentSlotConnected() ? this.startHandleDisconnect() : this.connectToVpn();
+        }
+      } else {
+        isCurrentSlotConnected() ? this.startHandleDisconnect() : this.connectToVpn();
       }
     }
 
