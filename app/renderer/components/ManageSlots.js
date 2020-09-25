@@ -220,7 +220,7 @@ export default class ManageSlots extends PureComponent {
       .then((dnsServers) => this.setState({ dnsServers }));
   };
 
-  connectToVpn = () => {
+  connectToVpn = (item) => {
     const {
       showError,
       endLoading,
@@ -229,53 +229,48 @@ export default class ManageSlots extends PureComponent {
       user,
       metadataPersisted: { selectedDns },
     } = this.props;
-    const { currentSlot, dnsServers } = this.state;
 
-    const savedSlot = find(user.ip_types, { port: currentSlot.port });
+    const savedSlot = find(user.ip_types, { port: item.port });
 
-    const isChanged = this.isChanged(currentSlot, savedSlot);
+    const isChanged = this.isChanged(item, savedSlot);
 
-    const { vpnusername, vpnpassword, port } = currentSlot;
+    const { vpnusername, vpnpassword, port } = item;
     if (!vpnpassword || !vpnusername) {
       return showError(
         `Missed required fields for slot ${port}. Please contact support...`,
       );
     }
+
     return (isChanged ? this.saveSlotConfigurationLoading() : Promise.resolve())
-      .then(() => updateDnsUser(currentSlot))
-      .then(
-        () =>
-          new Promise((resolve) =>
-            setTimeout(
-              () =>
-                resolve(setSlotAsActive(currentSlot, dnsServers[selectedDns])),
-              0,
-            ),
-          ),
-      )
-      .catch((err) => {
-        showError(err.message || 'Error set current slot as active!');
-        console.log(`Slot could not be set as active `);
-        console.error(err);
-      })
-      .finally(endLoading());
+    .then(() => updateDnsUser(item))
+    .then(
+      () =>
+        new Promise((resolve) =>
+          setTimeout(() => resolve(setSlotAsActive(item, selectedDns)), 0),
+        ),
+    )
+    .catch((err) => {
+      showError(err.message || 'Error set current slot as active!');
+      console.log(`Slot could not be set as active `);
+      console.error(err);
+    })
+    .finally(endLoading());
+
   };
 
-  saveSlotConfigurationLoading = () => {
+  saveSlotConfigurationLoading = (item) => {
     const {
       userEmail,
       endLoading,
+      refreshUserData,
       saveSlotConfigurationToApi,
       auth_token,
-      refreshUserData = noop,
     } = this.props;
-    const { currentSlot } = this.state;
-    const { country, region } = currentSlot;
-
-    const currentTypeData = IP_TYPES_MAPPING[currentSlot.ip_type.toLowerCase()];
+    const currentTypeData = IP_TYPES_MAPPING[item.ip_type.toLowerCase()];
+    const { country, region } = item;
 
     return saveSlotConfigurationToApi(
-      { ...currentSlot, userEmail, ip_type: currentTypeData },
+      { ...item, userEmail, ip_type: currentTypeData },
       auth_token,
     )
       .then(() => refreshUserData(userEmail, false))
@@ -285,7 +280,7 @@ export default class ManageSlots extends PureComponent {
         );
         console.error(err);
       })
-      .then(() => {
+      .finally(() => {
         app.updateXYCoordinates({ country, region });
         app.refreshPublicIp();
         this.setState({ isSlotSaved: true });
