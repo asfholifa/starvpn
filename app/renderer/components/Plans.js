@@ -7,6 +7,7 @@ import StyledButton from './statelessComponents/StyledButton';
 import { PACKAGE_STATUS } from '../helpers/constants';
 import Api from '../helpers/api';
 import openExternal from '../helpers/openExternal';
+import GoBackBtn from '../containers/GoBackBtn';
 
 const freeVPNList = [
   '1000MB Daily Data Transfer',
@@ -75,6 +76,7 @@ export default class Plans extends PureComponent {
 
     return (
       <div className={classNames('plans-page', !user && 'without-padding')}>
+        <GoBackBtn />
         <h2>Plans &amp; Membership</h2>
         <h5 className="plans-subtitle">Choose a VPN data plan</h5>
         <div className="plans-block">
