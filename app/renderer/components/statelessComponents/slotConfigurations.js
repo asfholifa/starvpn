@@ -93,11 +93,14 @@ function SlotConfiguration({
           <span className="configure-title">Country:</span>
           <Select
             name={`country-${item.port}`}
-            options={countriesOptions}
+            options={countriesOptions.map( option =>{
+              return {...option, label: <span><span className={`flag-icon flag-icon-${option.value}`}></span> {option.label}</span>}
+            })}
             onChange={onCountrySelect}
             className="basic-select"
             classNamePrefix="select"
-            value={countriesOptions[0]}
+            defaultValue={countriesOptions[0]}
+            defaultMenuIsOpen={true}
           />
         </div>
         <div>
@@ -105,7 +108,7 @@ function SlotConfiguration({
           <StyledSelect
             name={`region-${item.port}`}
             onChange={onRegionSelect}
-            options={regionsOptions}
+            values={regionsOptions}
             selected={get(region, 'key')}
           />
         </div>

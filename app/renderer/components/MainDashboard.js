@@ -154,7 +154,7 @@ export default class MainDashboard extends PureComponent {
     this.setState({ userIpTypes: ipTypesList });
   };
 
-  onCountrySelect = ({ target: { value } }) => {
+  onCountrySelect = ({ value }) => {
     const { userIpTypes, currentSlot } = this.state;
     const ipTypesList = map(userIpTypes, (item) => {
       if (item.port === Number(currentSlot.port)) {
