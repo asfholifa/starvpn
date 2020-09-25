@@ -31,6 +31,7 @@ function SlotConfiguration({
     countries,
     item.country,
   ]);
+  console.log(country);
   const regions = get(country, 'region');
   const region = find(regions, ['key', item.region]);
   const timeintervals = get(region, 'timeinterval');
@@ -75,6 +76,9 @@ function SlotConfiguration({
     label: value,
     value,
   }));
+
+  let key = get(country, 'key');
+
   return (
     <div className="bottom-block">
       <div className="left-block">
@@ -99,8 +103,7 @@ function SlotConfiguration({
             onChange={onCountrySelect}
             className="basic-select"
             classNamePrefix="select"
-            defaultValue={countriesOptions[0]}
-            defaultMenuIsOpen={true}
+            value={countriesOptions.filter(item => item.value === key)}
           />
         </div>
         <div>
