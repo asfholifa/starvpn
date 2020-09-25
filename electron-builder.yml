@@ -51,7 +51,7 @@ win:
          - ia32
          - x64
   requestedExecutionLevel: requireAdministrator
-  icon: build/renderer/styles/icons/icon.png
+  icon: build/renderer/styles/icons/icon.ico
   artifactName: '${productName} Setup ${version}-${env.BUILD_ARCH}.${ext}'
   publisherName: Starhome
   verifyUpdateCodeSignature: false
