@@ -258,7 +258,7 @@ export default class MainDashboard extends PureComponent {
         `Missed required fields for slot ${port}. Please contact support...`,
       );
     }
-    return (isChanged ? this.saveSlotConfiguration() : Promise.resolve())
+    return (isChanged ? this.saveSlotConfigurationLoading() : Promise.resolve())
       .then(() => updateDnsUser(currentSlot))
       .then(
         () =>
@@ -275,7 +275,38 @@ export default class MainDashboard extends PureComponent {
         console.log(`Slot could not be set as active `);
         console.error(err);
       })
-      .finally(endLoading);
+      .finally(endLoading());
+  };
+
+  saveSlotConfigurationLoading = () => {
+    const {
+      userEmail,
+      endLoading,
+      saveSlotConfigurationToApi,
+      auth_token,
+      refreshUserData = noop,
+    } = this.props;
+    const { currentSlot } = this.state;
+    const { country, region } = currentSlot;
+
+    const currentTypeData = IP_TYPES_MAPPING[currentSlot.ip_type.toLowerCase()];
+
+    return saveSlotConfigurationToApi(
+      { ...currentSlot, userEmail, ip_type: currentTypeData },
+      auth_token,
+    )
+      .then(() => refreshUserData(userEmail, false))
+      .catch((err) => {
+        this.props.showError(
+          err.message || 'Error saving slots configuration!',
+        );
+        console.error(err);
+      })
+      .then(() => {
+        app.updateXYCoordinates({ country, region });
+        app.refreshPublicIp();
+        this.setState({ isSlotSaved: true });
+      });
   };
 
   saveSlotConfiguration = () => {
