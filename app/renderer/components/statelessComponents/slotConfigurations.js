@@ -3,6 +3,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import React, { useMemo } from 'react';
 import StyledSelect from './StyledSelect';
+import Select from 'react-select';
 import { IP_TYPES_MAPPING } from '../../reducers/slots';
 import sortOptions from '../../helpers/sortOptions';
 
@@ -90,11 +91,13 @@ function SlotConfiguration({
       <div className="right-block">
         <div>
           <span className="configure-title">Country:</span>
-          <StyledSelect
+          <Select
             name={`country-${item.port}`}
-            values={countriesOptions}
+            options={countriesOptions}
             onChange={onCountrySelect}
-            selected={get(country, 'key')}
+            className="basic-select"
+            classNamePrefix="select"
+            value={countriesOptions[0]}
           />
         </div>
         <div>
@@ -102,7 +105,7 @@ function SlotConfiguration({
           <StyledSelect
             name={`region-${item.port}`}
             onChange={onRegionSelect}
-            values={regionsOptions}
+            options={regionsOptions}
             selected={get(region, 'key')}
           />
         </div>
