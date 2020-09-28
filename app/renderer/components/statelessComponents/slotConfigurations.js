@@ -21,7 +21,7 @@ function SlotConfiguration({
   onTypeChoose,
   onCountrySelect,
   onRegionSelect,
-  onIspsSelect,
+  onIspsSelect
 }) {
   const countries = get(ipTypes, [
     IP_TYPES_MAPPING[item.ip_type.toLowerCase()],
@@ -31,7 +31,7 @@ function SlotConfiguration({
     countries,
     item.country,
   ]);
-  console.log(country);
+  let selected;
   const regions = get(country, 'region');
   const region = find(regions, ['key', item.region]);
   const timeintervals = get(region, 'timeinterval');
@@ -77,8 +77,15 @@ function SlotConfiguration({
     value,
   }));
 
-  let key = get(country, 'key');
-
+  if(get(country, 'key') === undefined){
+    selected = null
+  } else {
+    selected = [{
+      value: get(country, 'key'),
+      label: <span><span className={`flag-icon flag-icon-${get(country, 'key')}`}></span> {countriesOptions.filter(item => item.value === get(country, 'key'))[0].label}</span>
+    }]
+  }
+  
   return (
     <div className="bottom-block">
       <div className="left-block">
@@ -98,12 +105,12 @@ function SlotConfiguration({
           <Select
             name={`country-${item.port}`}
             options={countriesOptions.map( option =>{
-              return {...option, label: <span><span className={`flag-icon flag-icon-${option.value}`}></span> {option.label}</span>}
+              return {...option, label: <span key={`${option.value}-${item.port}`}><span className={`flag-icon flag-icon-${option.value}`}></span> {option.label}</span>}
             })}
             onChange={onCountrySelect}
             className="basic-select"
             classNamePrefix="select"
-            value={countriesOptions.filter(item => item.value === key)}
+            value={selected}
           />
         </div>
         <div>

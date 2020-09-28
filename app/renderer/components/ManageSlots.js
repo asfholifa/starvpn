@@ -42,6 +42,7 @@ export default class ManageSlots extends PureComponent {
     currentSlot: undefined,
     isSlotSaved: false,
     slotName: undefined,
+    selectValue: []
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -150,9 +151,8 @@ export default class ManageSlots extends PureComponent {
     this.setState({ userIpTypes: ipTypesList });
   };
 
-  onCountrySelect = ({ target }) => {
-    const elName = target.getAttribute('name');
-    const port = elName.split('-')[1];
+  onCountrySelect = ({ value, label }) => {
+    const port = label.key.split('-')[1];
 
     const ipTypesList = map(this.state.userIpTypes, (item) => {
       if (item.port === Number(port)) {
@@ -160,14 +160,14 @@ export default class ManageSlots extends PureComponent {
           ...item,
           ...this.getDefaultSelectValues({
             ip_type: item.ip_type,
-            country: target.value,
+            country: value,
           }),
         };
         return { ...updatedCurrentSlot };
       }
       return item;
     });
-    this.setState({ userIpTypes: ipTypesList });
+    this.setState({ userIpTypes: ipTypesList, selectValue: [{value, label}] });
   };
 
   onRegionSelect = ({ target }) => {

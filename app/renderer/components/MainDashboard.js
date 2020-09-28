@@ -39,6 +39,7 @@ export default class MainDashboard extends PureComponent {
     currentSlot: {},
     dnsServers: {},
     isSlotSaved: false,
+    selectValue: []
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -154,7 +155,7 @@ export default class MainDashboard extends PureComponent {
     this.setState({ userIpTypes: ipTypesList });
   };
 
-  onCountrySelect = ({ value }) => {
+  onCountrySelect = ({ label, value }) => {
     const { userIpTypes, currentSlot } = this.state;
     const ipTypesList = map(userIpTypes, (item) => {
       if (item.port === Number(currentSlot.port)) {
@@ -170,7 +171,7 @@ export default class MainDashboard extends PureComponent {
       }
       return item;
     });
-    this.setState({ userIpTypes: ipTypesList });
+    this.setState({ userIpTypes: ipTypesList, selectValue: [{value, label}] });
   };
 
   onRegionSelect = ({ target: { value } }) => {
