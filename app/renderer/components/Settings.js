@@ -7,6 +7,7 @@ import Api from '../helpers/api';
 import { parseDnsString } from '../helpers/util';
 import app from '../helpers/app';
 import Toggle from './statelessComponents/Toggle';
+import ToggleBlocked from './statelessComponents/ToggleBlocked'
 import { ipcRenderer } from 'electron';
 
 const protocols = [{ label: 'UDP', value: 'udp' }, { label: 'TCP', value: 'tcp' }];
@@ -23,6 +24,10 @@ export default class Settings extends PureComponent {
   };
 
   state = {
+    modal: [{
+      status: [],
+      option: 'close'
+    }],
     dnsServers: {},
   };
 
@@ -112,7 +117,7 @@ export default class Settings extends PureComponent {
   };
 
   render() {
-    const { dnsServers } = this.state;
+    const { dnsServers, modal } = this.state;
     const {
       user: { data: { package: subscription } = {} } = {},
       metadataPersisted: {
@@ -125,14 +130,6 @@ export default class Settings extends PureComponent {
     } = this.props;
 
     const listWithToggle = [
-      {
-        title: 'Enable Smart VPN',
-        description:
-          'Media Streamer/Unblocker. Unblock your favourite websites and streaming services.',
-        checked: isSmartVpnEnabled,
-        disabled: !subscription,
-        handleChange: this.handleSmartDns,
-      },
       {
         checked: shouldOpenVpnConnectOnStartUp,
         description: 'If VPN connection is active on device shutdown, try to reconnect on reboot.',
@@ -159,8 +156,57 @@ export default class Settings extends PureComponent {
       },
     ];
 
+    const showModal = () => {
+      if(!isSmartVpnEnabled){
+        if(modal[0].option === 'close'){
+          this.setState({ modal: [{
+            status: [1],
+            option: 'open'
+          }]});
+        } else if(modal[0].option === 'open'){
+          this.setState({modal: [{
+            status: [],
+            option: 'start'
+          }]});
+        } else if(modal[0].option === 'start'){
+          this.setState({modal: [{
+            status: [],
+            option: 'close'
+          }]});
+        }
+      } else {
+        this.setState({modal: [{
+          status: [],
+          option: 'close'
+        }]});
+      }
+    }
+
     return (
       <div className="settings-page">
+        {this.state.modal[0].status.map(item => (
+           <div key={Date.now()} id="openModal" className="modal">
+           <div className="modal-dialog">
+             <div className="modal-content">
+               <div className="modal-header">
+                 <h3 className="modal-title">Warning</h3>
+                 <a onClick={showModal} title="Close" className="close">×</a>
+               </div>
+               <div className="modal-body">
+                 <p>Smart VPN service is recommended for Datacenter IP Type only.</p>
+               </div>
+               <div className="modal-body">
+                 <a
+                 className="styled-btn modalConnectButton"
+                 onClick={showModal}
+                 >
+                 Ok
+                 </a>
+               </div>
+             </div>
+           </div>
+         </div>
+        ))}
         <div className="title-block">
           <h2>Settings</h2>
         </div>
@@ -192,6 +238,20 @@ export default class Settings extends PureComponent {
               onChange={this.changeProtocol}
               disabled={!subscription}
             />
+          </div>
+          <div className="settings-item">
+            <div className="settings-text">
+              <h4 className="settings-title">Enable Smart VPN</h4>
+              <span className="settings-description">Media Streamer/Unblocker. Unblock your favourite websites and streaming services.</span>
+            </div>
+            {(modal[0].option !== 'start' && !isSmartVpnEnabled) && <ToggleBlocked
+            onClick={showModal}/>}
+            {(modal[0].option === 'start' || isSmartVpnEnabled) && <Toggle
+              checked={isSmartVpnEnabled}
+              disabled={!subscription}
+              onChange={this.handleSmartDns}
+              onClick={showModal}
+            />}
           </div>
           {map(listWithToggle, (item, index) => (
             <div key={index} className="settings-item">
