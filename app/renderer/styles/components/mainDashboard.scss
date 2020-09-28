@@ -9,6 +9,75 @@
     margin: 0;
   }
 
+  .basic-select{
+    padding-top: 0.8%;
+    width: 10%;
+    position: absolute;
+  }
+
+  .select__control{
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  .select__value-container{
+    font-family: $primaryFont;
+    color: $primaryWhite;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .select__placeholder{
+    font-family: $primaryFont;
+    color: $primaryWhite;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .select__single-value{
+    font-family: $primaryFont;
+    color: $primaryWhite;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .select__menu{
+    background: #151a2c;
+    border-radius: 0px;
+    border: 1px solid orange;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+  }
+
+  .select__menu-list{
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+  }
+
+  .select__option{
+    font-size: 14px;
+    background: transparent;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+  }
+
+  .select__option:hover{
+    background: rgb(0, 140, 255);
+  }
+
+  .select__control:hover{
+    border: none;
+  }
+
+  .css-1laao21-a11yText{
+    display: none;
+  }
+
+  .select__indicator-separator{
+    display: none;
+  }
+
   .slots-container {
     display: flex;
     flex-direction: column;

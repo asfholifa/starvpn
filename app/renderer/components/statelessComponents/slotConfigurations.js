@@ -3,6 +3,7 @@ import get from 'lodash/get';
 import map from 'lodash/map';
 import React, { useMemo } from 'react';
 import StyledSelect from './StyledSelect';
+import Select from 'react-select';
 import { IP_TYPES_MAPPING } from '../../reducers/slots';
 import sortOptions from '../../helpers/sortOptions';
 
@@ -20,7 +21,7 @@ function SlotConfiguration({
   onTypeChoose,
   onCountrySelect,
   onRegionSelect,
-  onIspsSelect,
+  onIspsSelect
 }) {
   const countries = get(ipTypes, [
     IP_TYPES_MAPPING[item.ip_type.toLowerCase()],
@@ -30,6 +31,7 @@ function SlotConfiguration({
     countries,
     item.country,
   ]);
+  let selected;
   const regions = get(country, 'region');
   const region = find(regions, ['key', item.region]);
   const timeintervals = get(region, 'timeinterval');
@@ -74,6 +76,16 @@ function SlotConfiguration({
     label: value,
     value,
   }));
+
+  if(get(country, 'key') === undefined){
+    selected = null
+  } else {
+    selected = [{
+      value: get(country, 'key'),
+      label: <span><span className={`flag-icon flag-icon-${get(country, 'key')}`}></span> {countriesOptions.filter(item => item.value === get(country, 'key'))[0].label}</span>
+    }]
+  }
+  
   return (
     <div className="bottom-block">
       <div className="left-block">
@@ -90,11 +102,15 @@ function SlotConfiguration({
       <div className="right-block">
         <div>
           <span className="configure-title">Country:</span>
-          <StyledSelect
+          <Select
             name={`country-${item.port}`}
-            values={countriesOptions}
+            options={countriesOptions.map( option =>{
+              return {...option, label: <span key={`${option.value}-${item.port}`}><span className={`flag-icon flag-icon-${option.value}`}></span> {option.label}</span>}
+            })}
             onChange={onCountrySelect}
-            selected={get(country, 'key')}
+            className="basic-select"
+            classNamePrefix="select"
+            value={selected}
           />
         </div>
         <div>
