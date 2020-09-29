@@ -85,6 +85,18 @@ function SlotConfiguration({
       label: <span><span className={`flag-icon flag-icon-${get(country, 'key')}`}></span> {countriesOptions.filter(item => item.value === get(country, 'key'))[0].label}</span>
     }]
   }
+
+  ipTypesValues.forEach(element => {
+    if(element.value === 'Static Residential IP'){
+      element.label = 'Static Residential'
+    } else if(element.value === 'Rotating Residential IP'){
+      element.label = 'Rotating/Sticky Residential'
+    } else if(element.value === 'Static Datacenter IP'){
+      element.label = 'Datacenter'
+    } else if(element.value === 'Mobile Wireless 4g IP'){
+      element.label = 'Mobile 4G'
+    }
+  });
   
   return (
     <div className="bottom-block">

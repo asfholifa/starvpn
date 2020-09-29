@@ -71,6 +71,7 @@ export default class MainDashboard extends PureComponent {
         availableIpTypes,
         currentSavedSlot: { ip_type },
       } = this.props;
+      console.log(availableIpTypes)
       this.refreshCurrentSlot();
       if (availableIpTypes.length === 1 && ip_type !== availableIpTypes[0]) {
         console.log(`Setting FREE IP TYPE`);
@@ -415,6 +416,7 @@ export default class MainDashboard extends PureComponent {
       ],
       '/',
     );
+    
 
     return (
       <div className="main-dashboard-page">
