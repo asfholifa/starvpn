@@ -168,6 +168,7 @@ export default class Settings extends PureComponent {
             status: [],
             option: 'start'
           }]});
+          console.log(!!isSmartVpnEnabled)
         } else if(modal[0].option === 'start'){
           this.setState({modal: [{
             status: [],
@@ -196,12 +197,18 @@ export default class Settings extends PureComponent {
                  <p>Smart VPN service is recommended for Datacenter IP Type only.</p>
                </div>
                <div className="modal-body">
-                 <a
+                <a
+                 className="styled-btn modalConnectButton"
+                 onClick={showModal}
+                 >
+                 Go Back
+                </a>
+                <a
                  className="styled-btn modalConnectButton"
                  onClick={showModal}
                  >
                  Ok
-                 </a>
+                </a>
                </div>
              </div>
            </div>
