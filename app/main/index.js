@@ -296,7 +296,7 @@ ipcMain.on('facebook-auth', async () => {
 });
 
 ipcMain.on('check-for-updates', async () => {
-  return autoUpdater.checkForUpdatesAndNotify();
+  return autoUpdater.checkForUpdates();
 });
 
 ipcMain.on('public-ip:refresh', async () => {

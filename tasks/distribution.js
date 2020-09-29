@@ -8,6 +8,7 @@ const buildConfig = {
     oneClick: false,
     perMachine: false,
     uninstallDisplayName: 'Uninstall StarVPN',
+    differentialPackage: false,
   },
 };
 function packWin() {
