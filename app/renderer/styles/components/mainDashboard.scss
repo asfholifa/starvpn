@@ -11,7 +11,7 @@
 
   .basic-select{
     padding-top: 0.8%;
-    width: 10%;
+    width: 12%;
     position: absolute;
   }
 
@@ -26,6 +26,7 @@
     color: $primaryWhite;
     font-size: 13px;
     font-weight: 600;
+    padding: 0px 0px 0px 0px;
   }
 
   .select__placeholder{

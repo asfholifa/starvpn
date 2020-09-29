@@ -56,7 +56,8 @@
     height: auto;
     min-width: auto;
     margin-bottom: 1%;
-    margin-right: 5%;
+    margin-right: 2%;
+    margin-left: 2%;
     padding: 5px 15px 5px 15px;
     text-decoration: none;
   }
@@ -130,6 +131,12 @@
     flex: 1 1 auto;
     padding: 15px;
     overflow: auto;
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
   }
 
   .title-block {

@@ -445,7 +445,7 @@ export default class ManageSlots extends PureComponent {
                <div className="modal-body">
                  <p>This feature is for paid members only.</p>
                </div>
-               <div className="modal-body">
+               <div className="modal-footer">
                  <a
                  className="styled-btn modalConnectButton"
                  onClick={closeModal}

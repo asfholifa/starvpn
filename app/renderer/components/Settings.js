@@ -168,7 +168,7 @@ export default class Settings extends PureComponent {
             status: [],
             option: 'start'
           }]});
-          console.log(!!isSmartVpnEnabled)
+          this.handleSmartDns({ target: { checked: true } })
         } else if(modal[0].option === 'start'){
           this.setState({modal: [{
             status: [],
@@ -183,6 +183,13 @@ export default class Settings extends PureComponent {
       }
     }
 
+    const goBack = () => {
+      this.setState({modal: [{
+        status: [],
+        option: 'close'
+      }]});
+    }
+
     return (
       <div className="settings-page">
         {this.state.modal[0].status.map(item => (
@@ -191,15 +198,15 @@ export default class Settings extends PureComponent {
              <div className="modal-content">
                <div className="modal-header">
                  <h3 className="modal-title">Warning</h3>
-                 <a onClick={showModal} title="Close" className="close">×</a>
+                 <a onClick={goBack} title="Close" className="close">×</a>
                </div>
                <div className="modal-body">
                  <p>Smart VPN service is recommended for Datacenter IP Type only.</p>
                </div>
-               <div className="modal-body">
+               <div className="modal-footer">
                 <a
                  className="styled-btn modalConnectButton"
-                 onClick={showModal}
+                 onClick={goBack}
                  >
                  Go Back
                 </a>
@@ -259,7 +266,7 @@ export default class Settings extends PureComponent {
               onChange={this.handleSmartDns}
               onClick={showModal}
             />}
-          </div>
+            </div>
           {map(listWithToggle, (item, index) => (
             <div key={index} className="settings-item">
               <div className="settings-text">
