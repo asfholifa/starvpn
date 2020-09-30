@@ -2,4 +2,3 @@ owner: john-d13
 repo: starhome
 provider: github
 updaterCacheDirName: starvpn-updater
-artifactName: ${productName}-Setup-${version}-${env.BUILD_ARCH}.${ext}
